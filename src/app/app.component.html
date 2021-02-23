@@ -1,0 +1,31 @@
+<h2>Список контактов</h2>
+<form [formGroup]="form">
+  <label>ID</label><input type="text" formControlName="id">&nbsp;
+  <label>Фамилия</label><input type="text" formControlName="fam">&nbsp;
+  <label>Имя</label><input type="text" formControlName="im">&nbsp;
+  <label>Отчество</label><input type="text" formControlName="ot">&nbsp;
+  <label>Телефон</label><input type="text" formControlName="phone">&nbsp;
+  <label>email</label><input type="text" formControlName="email">&nbsp;
+  <br>
+  <button (click)="setValue()">Добавить элемент</button>
+</form>
+<pre>{{phonebook | json}}</pre>
+<table>
+  <tr>
+    <th>№</th>
+    <th>Фамилия</th>
+    <th>Имя</th>
+    <th>Отчество</th>
+    <th>Телефон</th>
+    <th>Email</th>
+  </tr>
+  <tr *ngFor="let contact of phoneBookToArray(phonebook);let i=index"> 
+    <td>{{contact[i][0]}}</td>
+    <td>{{contact[i][1]}}</td>
+    <td>{{contact[i][2]}}</td>
+    <td>{{contact[i][3]}}</td>
+    <td>{{contact[i][4]}}</td>
+    <td>{{contact[i][5]}}</td>
+  </tr>
+  
+</table>
