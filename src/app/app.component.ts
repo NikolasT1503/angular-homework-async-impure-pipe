@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable, interval } from 'rxjs';
 
 const data = require('../assets/phones.json');
 
@@ -22,18 +23,18 @@ interface PhoneBook {
 export class AppComponent {
   title = 'anular-homework-async-impure-pipe';
 
-  phonebook: PhoneBook[] = data;
-  //phonebook: any = data;
+  phonebook: PhoneBook[] = data.phoneBook;
 
   form : FormGroup;
 
   constructor(private formBuilder: FormBuilder){
 
+
   }
   
   ngOnInit(){
     this.form = this.formBuilder.group({
-      id: this.formBuilder.control({value:'', disabled:true}),
+      id: this.formBuilder.control({value:'', disabled:false}),
       fam: this.formBuilder.control('',Validators.required),
       im: this.formBuilder.control('',Validators.required),
       ot: this.formBuilder.control('',Validators.required),
@@ -42,18 +43,12 @@ export class AppComponent {
     })
 /*     console.log('Результат загрузки:', this.phonebook);
     this.getPhoneBook(); */
-    console.log('Проверка:', this.phoneBookToArray(this.phonebook));
-  }
-  
-  phoneBookToArray(pb: PhoneBook[]){
-/*     var ar = pb.forEach(el => [el]);
-    return ar; */
-    return pb.map(el => [el])
+/*     console.log(this.phonebook); */
   }
 
-  setValue(){
+  addValue(contact : PhoneBook){
     //здесь надо прописать код по добавлению элемента в набор, но этого не было в задании, поэтому заглушка
-
+    this.phonebook.push(contact);
   }
    
 
